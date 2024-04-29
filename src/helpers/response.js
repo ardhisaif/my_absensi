@@ -14,16 +14,16 @@ const Status = {
   501: 'Bad Gateway',
 };
 
-export const response = (res, code, message = '', data = null) => {
+export function response(res, code, message = '', data = null) {
   const status = Status[code] || '';
   res.status(code).json({ status, status_code: code, message, data });
-};
-
-export const okeResponse = (res, message = '', data = null) => {
-  return response(res, 200, message, data)
 }
 
-export const errResponse = (error, res, position) => {
+export function okResponse(res, message = '', data = null) {
+  return response(res, 200, message, data);
+}
+
+export function errResponse(error, res, position) {
   if (position) console.log(position, 'error: ', error.message);
 
   if (error instanceof ZodError) return response(res, 400, error.errors[0].message);
@@ -31,12 +31,12 @@ export const errResponse = (error, res, position) => {
   const status = error.status || 500;
   error.message = status === 500 ? 'Internal Server Error' : error.message;
   return response(res, status, error.message);
-};
+}
 
-export const errThrow = (condition, status, message) => {
+export function errThrow(condition, status, message) {
   if (condition) {
     const error = new Error(message);
     error.status = status;
     throw error;
   }
-};
+}
