@@ -1,10 +1,12 @@
-import { getUserByUserID } from '../models/user.model.js'
+import user from '../models/user.model.js'
 
-export async function getUserByUserIDService(userID) {
-  try {
-    const data = await getUserByUserID(userID)
-    return data
-  } catch (error) {
-    throw error
+export default {
+  async getUserByUserID(userID) {
+    try {
+      const data = await user.getUserByUserID(userID)
+      return data
+    } catch (error) {
+      throw error
+    }
   }
 }

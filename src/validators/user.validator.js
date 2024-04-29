@@ -1,6 +1,9 @@
 import { z } from 'zod'
 import { zodString } from '../helpers/zod.message.js'
 
-export const idValidator = z.object({
-  userID        : zodString('user_id')
-})
+export default {
+  userID : z.object({
+    user_id: zodString('user_id')
+  })
+  
+}
