@@ -1,8 +1,13 @@
 import { Router } from 'express'
-import user from './user.router.js'
-
+import userRouter from './user.router.js'
+import desaRouter from './desa.router.js'
+import kelompokRouter from './kelompok.router.js'
+import presenceRouter from './presence.router.js'
 const router = Router()
 
-router.use('/user', user)
+router.use('/user', userRouter)
+router.use('/desa', desaRouter)
+router.use('/kelompok', kelompokRouter)
+router.use('/presence', presenceRouter)
 
 export default router

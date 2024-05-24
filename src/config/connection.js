@@ -1,23 +1,13 @@
-import mysql from 'mysql2';
+import pgPromise from 'pg-promise'
 
-const db = mysql.createPool({
-  host           : process.env.DATABASE_HOST,
-  port           : process.env.DATABASE_PORT,
-  user           : process.env.DATABASE_USER,
-  password       : process.env.DATABASE_PASSWORD,
-  database       : process.env.DATABASE,
-  timezone       : '+00:00',
-  connectionLimit: 2000,
-});
+const pgp = pgPromise()
 
-db.getConnection((err, connection) => {
-  if (err) {
-    if (typeof connection !== 'undefined' && connection) {
-      connection.release();
-    }
-    return console.error('error: ' + err.message);
-  }
-  console.log('Database Connected!');
-});
+const db = pgp({
+  user: process.env.DATABASE_USER,
+  host: process.env.DATABASE_HOST,
+  database: process.env.DATABASE,
+  password: process.env.DATABASE_PASSWORD,
+  port: process.env.DATABASE_PORT,
+})
 
-export default db.promise();
+export default db

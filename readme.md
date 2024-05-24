@@ -53,7 +53,7 @@
     Logika bisnis utama untuk mengelola request dan data dari database
     - contoh penamaan file:  `user.service.js`
 
-### 8. Validaors
+### 8. Validators
     Validasi request body menggunakan zod yang nantinya bisa digunakan di beberapa file controller
     - contoh penamaan file:  `user.validator.js`
 
