@@ -1,4 +1,4 @@
-import presence from '../models/presence.model'
+import presence from '../models/presence.model.js'
 
 export default {
   async getPresenceByEventId(eventId) {

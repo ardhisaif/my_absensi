@@ -4,7 +4,7 @@ export default {
   async getEvents() {
     try {
       const sql = `
-        SELECT * FROM event 
+        SELECT * FROM events 
       `
       const data = await db.query(sql)
       return data
@@ -16,7 +16,7 @@ export default {
   async getEventByEventID(event_id) {
     try {
       const sql = `
-        SELECT * FROM event WHERE id = $1
+        SELECT * FROM events WHERE id = $1
       `
       const data = await db.query(sql, [event_id])
       return data
@@ -28,11 +28,12 @@ export default {
   async createEvent(name, date, categoryOfAge) {
     try {
       const sql = `
-        INSERT INTO event (name, date, category_of_age) VALUES ($1, $2, $3)
+        INSERT INTO events (name, date, category_of_age) VALUES ($1, $2, $3)
       `
       const data = await db.query(sql, [name, date, categoryOfAge])
       return data
     } catch (error) {
+      console.log(error);
       throw error
     }
   },
@@ -40,7 +41,7 @@ export default {
   async updateEvent(id, name, date, categoryOfAge) {
     try {
       const sql = `
-        UPDATE event SET name = $1, date = $2, category_of_age = $3 WHERE id = $4
+        UPDATE events SET name = $1, date = $2, category_of_age = $3 WHERE id = $4
       `
       const data = await db.query(sql, [name, date, categoryOfAge, id])
       return data
@@ -52,7 +53,7 @@ export default {
   async deleteEvent(id) {
     try {
       const sql = `
-        DELETE FROM event WHERE id = $1
+        DELETE FROM events WHERE id = $1
       `
       const data = await db.query(sql, [id])
       return data

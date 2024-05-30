@@ -23,8 +23,8 @@ export default {
 
   async createUser(req, res) {
     try {
-      const { name, kelompokId, isActive, categoryOfAge, dateOfBirth } = req.body
-      await user.createUser(name, kelompokId, isActive, categoryOfAge, dateOfBirth)
+      const { name, kelompokId, categoryOfAge, dateOfBirth } = req.body
+      await user.createUser(name, kelompokId, categoryOfAge, dateOfBirth)
       return okResponse(res, 'success insert user!')
     } catch (error) {
       return errResponse(error, res, 'createUserController')

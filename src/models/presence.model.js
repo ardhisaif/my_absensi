@@ -1,10 +1,10 @@
-import db from '../config/connection'
+import db from '../config/connection.js'
 
 export default {
   async getPresenceByEventId(eventId) {
     try {
       const sql = `
-        SELECT * FROM presence WHERE event_id = $1
+        SELECT * FROM presences WHERE event_id = $1
       `
       const data = await db.query(sql, [eventId])
       return data
@@ -16,7 +16,7 @@ export default {
   async createPresence(userId, eventId, status, description) {
     try {
       const sql = `
-        INSERT INTO presence (user_id, event_id, status, description) VALUES ($1, $2, $3, $4)
+        INSERT INTO presences (user_id, event_id, status, description) VALUES ($1, $2, $3, $4)
       `
       const data = await db.query(sql, [userId, eventId, status, description])
       return data
@@ -28,7 +28,7 @@ export default {
   async updatePresence(id, userId, eventId, status, description) {
     try {
       const sql = `
-        UPDATE presence SET user_id = $1, event_id = $2, status = $3, description = $4 WHERE id = $5
+        UPDATE presences SET user_id = $1, event_id = $2, status = $3, description = $4 WHERE id = $5
       `
       const data = await db.query(sql, [userId, eventId, status, description, id])
       return data
@@ -40,7 +40,7 @@ export default {
   async deletePresence(id) {
     try {
       const sql = `
-        DELETE FROM presence WHERE id = $1
+        DELETE FROM presences WHERE id = $1
       `
       const data = await db.query(sql, [id])
       return data
