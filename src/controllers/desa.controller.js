@@ -27,7 +27,6 @@ export default {
       await desa.createDesa(name)
       return okResponse(res, 'success insert desa!')
     } catch (error) {
-      console.log(error);
       return errResponse(error, res, 'createDesaController')
     }
   },

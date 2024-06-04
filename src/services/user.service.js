@@ -10,9 +10,18 @@ export default {
     }
   },
 
-  async getUserById(userId) {
+  async getUserByUserId(userId) {
     try {
-      const data = await user.getUserByUserID(userId)
+      const data = await user.getUserByUserId(userId)
+      return data
+    } catch (error) {
+      throw error
+    }
+  },
+
+  async getUserByKelompokId(kelompokId) {
+    try {
+      const data = await user.getUserByKelompokId(kelompokId)
       return data
     } catch (error) {
       throw error
@@ -21,7 +30,7 @@ export default {
 
   async createUser(name, kelompokId, categoryOfAge, dateOfBirth) {
     try {
-      const userId = `${kelompokId}${categoryOfAge}${Date.now()}`;
+      const userId = `${kelompokId}${categoryOfAge}${Date.now()}`
 
       const data = await user.createUser(userId, name, kelompokId, categoryOfAge, dateOfBirth)
       return data

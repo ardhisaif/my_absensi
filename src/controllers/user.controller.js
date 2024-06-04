@@ -11,13 +11,24 @@ export default {
     }
   },
 
-  async getUserById(req, res) {
+  async getUserByUserId(req, res) {
     try {
-      const { user_id } = req.params
-      const data = await user.getUserById(user_id)
+      const id = req.params.id
+      const data = await user.getUserByUserId(id)
       return okResponse(res, 'success!', data)
     } catch (error) {
       return errResponse(error, res, 'registerController')
+    }
+  },
+
+  async getUserByKelompokId(req, res) {
+    try {
+      const kelompokId = req.params.id
+      console.log(req.params);
+      const data = await user.getUserByKelompokId(kelompokId)
+      return okResponse(res, 'success!', data)
+    } catch (error) {
+      return errResponse(error, res, 'getUserByKelompokIdController')
     }
   },
 

@@ -6,25 +6,37 @@ export default {
       const sql = `
         SELECT * FROM users 
       `
-      const data = await db.query(query)
+      const data = await db.query(sql)
       return data
     } catch (error) {
       throw error
     }
   },
 
-  async getUserByUserID(user_id) {
+  async getUserByUserId(user_id) {
     try {
       const sql = `
         SELECT u.id AS user_id, u.name AS user_name, k.name AS kelompok_name, d.name AS desa_name
         FROM users u
         INNER JOIN kelompok k ON u.kelompok_id = k.id
-        INNER JOIN desa d ON k.desa_id = d.id;
+        INNER JOIN desa d ON k.desa_id = d.id
+        WHERE u.id = $1;
       `
       const [data] = await db.query(sql, [user_id])
       return data
     } catch (error) {
-      console.log(error);
+      throw error
+    }
+  },
+
+  async getUserByKelompokId(kelompokId) {
+    try {
+      const sql = `
+        SELECT * FROM users WHERE kelompok_id = $1
+      `
+      const data = await db.query(sql, [kelompokId])
+      return data
+    } catch (error) {
       throw error
     }
   },
@@ -38,7 +50,6 @@ export default {
       const data = await db.query(sql, [userId, name, kelompokId, isActive, categoryOfAge, dateOfBirth])
       return data
     } catch (error) {
-      console.log(error);
       throw error
     }
   },
@@ -65,6 +76,5 @@ export default {
     } catch (error) {
       throw error
     }
-  }
-  
+  },
 }

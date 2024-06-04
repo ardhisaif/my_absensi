@@ -27,7 +27,6 @@ export default {
       await kelompok.createKelompok(name, desaId)
       return okResponse(res, 'success insert kelompok!')
     } catch (error) {
-      console.log(error);
       return errResponse(error, res, 'createKelompokController')
     }
   },

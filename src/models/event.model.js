@@ -33,7 +33,6 @@ export default {
       const data = await db.query(sql, [name, date, categoryOfAge])
       return data
     } catch (error) {
-      console.log(error);
       throw error
     }
   },

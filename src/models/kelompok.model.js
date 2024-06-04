@@ -7,7 +7,6 @@ export default {
         SELECT * FROM kelompok
       `
       const data = await db.query(sql)
-      console.log(data)
 
       return data
     } catch (error) {
